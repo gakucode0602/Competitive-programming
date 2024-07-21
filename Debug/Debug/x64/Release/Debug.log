@@ -1,0 +1,2 @@
+﻿  debug.cpp
+D:\Competitive Programming\Debug\Debug\debug.cpp : error C1041: cannot open program database 'D:\Competitive Programming\Debug\Debug\x64\Release\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
