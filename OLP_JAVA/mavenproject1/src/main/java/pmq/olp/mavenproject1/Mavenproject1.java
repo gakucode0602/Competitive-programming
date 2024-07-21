@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package pmq.olp.mavenproject1;
-import java.util.AbstractList;
+//package pmq.olp.mavenproject1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,21 +15,30 @@ import java.util.stream.Stream;
 
 public class Mavenproject1 {
     public static void main(String[] args) {
-        int n;
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        int[] dp = new int[n + 2];
-        for(int j = 0;j <= n + 1;j++){
-            dp[j] = (int)Math.pow(10,9);
+        int n = Integer.parseInt(sc.next());
+        int x = Integer.parseInt(sc.next());
+        int[] prices = new int[n];
+        int[] pages = new int[n];
+        for(int i = 0;i < n;i++){
+            prices[i] = sc.nextInt();
         }
-        dp[0] = 0;
-        for(int x = 0;x <= n;x++){
-            String s = Integer.toString(x);
-            for(int d = 0;d < s.length();d++)
-            {
-                dp[x] = Math.min(dp[x],dp[x - (s.charAt(d) - '0')] + 1);
+        for(int i = 0;i < n;i++){
+           pages[i] = sc.nextInt();
+        }
+        int[][] dp = new int[n + 1][x + 1];
+        for(int i = 0;i < n + 1;i++){
+            Arrays.fill(dp[i], 0);
+        }
+        for(int i = 1;i <= n;i++){
+            for(int j = 0;j <= x;j++){
+                dp[i][j] = dp[i - 1][j];
+                int left = j - prices[i - 1];
+                if(left >= 0){
+                    dp[i][j] = Math.max(dp[i][j],dp[i - 1][left] + pages[i - 1]);
+                }
             }
         }
-        System.out.println(dp[n]);
+        System.out.println(dp[n][x]);
     }
 }
